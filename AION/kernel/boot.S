@@ -15,6 +15,22 @@ mb_header:
     .long 25               /* Height (rows) */
     .long 0                /* Depth (0 = text mode) */
 
+    /* Memory map tag (optional) */
+    .short 6               /* Type = Memory map */
+    .short 1               /* Flags = optional */
+    .long 12               /* Size = 12 bytes */
+    .long 0                /* Base address of the memory map */
+    .long 0                /* Length of the memory map */
+    .long 0                /* Type of memory */
+
+    /* ELF sections tag (optional) */
+    .short 9               /* Type = ELF sections */
+    .short 1               /* Flags = optional */
+    .long 12               /* Size = 12 bytes */
+    .long 0                /* Address of ELF section headers */
+    .long 0                /* Size of ELF section headers */
+    .long 0                /* Number of ELF sections */
+
     /* End tag */
     .short 0               /* Type */
     .short 0               /* Flags */
