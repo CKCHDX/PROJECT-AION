@@ -2,20 +2,20 @@ AION is an experimental, zero-knowledge AI operating system written in C and x86
 
 Project Goals
 Zero-Knowledge Bootstrapping
-Build an OS that begins with no device drivers or language understanding.											┌───────────────────────────────┐
-																													│      AION OS Runtime (32-bit) │
-AI-First Runtime																									├───────────────────────────────┤
-Combine a freestanding C/assembly kernel with modular AI modules.													│ 1. GRUB Bootloader            │
-																													│ 2. freestanding C Kernel      │
-Embodied Cognitive Development																						│    • hardware_probe.o         │
-Simulate infant-like perception: hardware discovery → pattern recognition → concept clustering → speech.			│    • entropy_filter.o         │
-																													│ 3. Self-Supervised Learner    │
-Organic Language Acquisition																						│    • brain_stem.o             │
-Start with cluster IDs, later map to human labels in a few-shot fashion.											│    • ai_alloc.o               │
-																													│ 4. Concept Memory & Scheduler │
-Modular Architecture																								│ 5. Control Panel & I/O Panel  │
+Build an OS that begins with no device drivers or language understanding.										┌───────────────────────────────┐
+																			│      AION OS Runtime (32-bit) │
+AI-First Runtime																	├───────────────────────────────┤
+Combine a freestanding C/assembly kernel with modular AI modules.											│ 1. GRUB Bootloader            │
+																			│ 2. freestanding C Kernel      │
+Embodied Cognitive Development																│    • hardware_probe.o         │
+Simulate infant-like perception: hardware discovery → pattern recognition → concept clustering → speech.						│    • entropy_filter.o         │
+																			│ 3. Self-Supervised Learner    │
+Organic Language Acquisition																│    • brain_stem.o             │
+Start with cluster IDs, later map to human labels in a few-shot fashion.										│    • ai_alloc.o               │
+																			│ 4. Concept Memory & Scheduler │
+Modular Architecture																	│ 5. Control Panel & I/O Panel  │
 Enable incremental addition of new sensors, learners and interaction panels.										│ 6. TTS Module (“speech”)      │
-																													└───────────────────────────────┘
+																			└───────────────────────────────┘
 System Flow
 Boot via GRUB → loads boot.o (assembly) + kernel.bin
 
