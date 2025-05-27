@@ -2,7 +2,8 @@ name: Build and Run OS with QEMU
 
 on:
   push:
-    branches: [AION]
+    branches:
+      - AION
 
 jobs:
   build-and-run:
@@ -12,26 +13,26 @@ jobs:
         working-directory: AION
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential qemu-system
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential qemu-system-x86
 
-    - name: Build your project
-      run: make
+      - name: Build the project with Make
+        run: make
 
-    - name: Run QEMU headless and capture output
-      run: |
-        timeout 30 qemu-system-x86_64 -cdrom aion.iso -nographic -serial stdio > qemu_output.log || true
+      - name: Run QEMU headless and capture output
+        run: |
+          timeout 30 qemu-system-x86_64 -cdrom aion.iso -nographic -serial stdio > qemu_output.log || true
 
-    - name: Show boot output
-      run: cat qemu_output.log
+      - name: Display boot output
+        run: cat qemu_output.log
 
-    - name: Upload boot output as artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: qemu-boot-output
-        path: qemu_output.log
+      - name: Upload QEMU output as artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: qemu-boot-output
+          path: qemu_output.log
