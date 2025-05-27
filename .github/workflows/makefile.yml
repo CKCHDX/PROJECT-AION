@@ -2,7 +2,7 @@ name: Build and Run OS with QEMU
 
 on:
   push:
-    branches: [main]
+    branches: [AION]
 
 jobs:
   build-and-run:
