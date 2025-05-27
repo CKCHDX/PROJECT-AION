@@ -1,38 +1,14 @@
-name: Build and Run OS with QEMU
+name: Test Upload Artifact
 
-on:
-  push:
-    branches:
-      - AION
+on: [push]
 
 jobs:
-  build-and-run:
+  test-upload:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: AION
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential qemu-system-x86
-
-      - name: Build the project with Make
-        run: make
-
-      - name: Run QEMU headless and capture output
-        run: |
-          timeout 30 qemu-system-x86_64 -cdrom aion.iso -nographic -serial stdio > qemu_output.log || true
-
-      - name: Display boot output
-        run: cat qemu_output.log
-
-      - name: Upload QEMU output as artifact
-        uses: actions/upload-artifact@v3.1.2
+      - uses: actions/checkout@v3
+      - run: echo "Hello world" > test.txt
+      - uses: actions/upload-artifact@v3
         with:
-          name: qemu-boot-output
-          path: qemu_output.log
+          name: test-artifact
+          path: test.txt
