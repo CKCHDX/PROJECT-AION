@@ -3,7 +3,6 @@
 #include "../utils.h"
 
 static uint8_t learning_progress = 0;
-static uint32_t tokens_processed = 0;
 
 void lang_learn_from_tokens(const ParsedInput *parsed) {
     if (!parsed) {
@@ -23,8 +22,6 @@ void lang_learn_from_tokens(const ParsedInput *parsed) {
             // New word, add with unknown category
             lexicon_add_word(token, 0);
         }
-        
-        tokens_processed++;
     }
 }
 
@@ -32,13 +29,13 @@ void lang_learn_update_stats(void) {
     // Update learning progress based on vocabulary size
     size_t vocab_size = lexicon_get_size();
     
-    if (vocab_size < 10) {
+    if (vocab_size <= 10) {
         learning_progress = 10;
-    } else if (vocab_size < 20) {
+    } else if (vocab_size <= 20) {
         learning_progress = 25;
-    } else if (vocab_size < 40) {
+    } else if (vocab_size <= 40) {
         learning_progress = 50;
-    } else if (vocab_size < 60) {
+    } else if (vocab_size <= 60) {
         learning_progress = 75;
     } else {
         learning_progress = 100;

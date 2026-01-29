@@ -12,7 +12,6 @@ int parser_tokenize(const char *input, size_t len, ParsedInput *result) {
     }
 
     result->token_count = 0;
-    size_t token_idx = 0;
     size_t char_idx = 0;
     int in_token = 0;
 

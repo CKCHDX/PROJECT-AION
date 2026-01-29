@@ -13,8 +13,12 @@ static uint8_t module_initialized = 0;
 void language_initialize(void) {
     lexicon_initialize();
     lang_chat_initialize();
-    current_parsed.token_count = 0;
+    athena_memset(&current_parsed, 0, sizeof(current_parsed));
     output_buffer[0] = '\0';
+    
+    // Calculate initial learning progress based on initialized vocabulary
+    lang_learn_update_stats();
+    
     module_initialized = 1;
     hub_vga_update(8, 0, "[LANGUAGE] Initialized");
 }
@@ -63,7 +67,8 @@ void language_update(void) {
     
     if (update_counter % 10 == 0) {
         // Process sample input periodically
-        language_process_input("hello system", 12);
+        const char *sample_input = "hello system";
+        language_process_input(sample_input, athena_strlen(sample_input));
     }
     
     hub_vga_update(8, 1, "[LANGUAGE] Processing");

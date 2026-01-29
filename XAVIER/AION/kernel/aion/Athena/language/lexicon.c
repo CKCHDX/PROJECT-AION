@@ -27,6 +27,8 @@ static void str_copy(char *dest, const char *src, size_t max_len) {
 }
 
 void lexicon_initialize(void) {
+    // Explicitly zero out the lexicon
+    athena_memset(lexicon, 0, sizeof(lexicon));
     lexicon_size = 0;
     
     // Initialize with basic vocabulary
