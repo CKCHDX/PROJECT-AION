@@ -14,6 +14,16 @@ void *athena_memcpy(void *dest, const void *src, size_t n)
     return dest;
 }
 
+// Simple memset
+void *athena_memset(void *dest, int val, size_t n)
+{
+    uint8_t *d = (uint8_t*)dest;
+    uint8_t v = (uint8_t)val;
+    for (size_t i = 0; i < n; ++i)
+        d[i] = v;
+    return dest;
+}
+
 // String length
 size_t athena_strlen(const char *s)
 {

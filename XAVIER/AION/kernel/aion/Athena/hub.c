@@ -7,10 +7,11 @@
 #include "reasoning/reasoning.h"
 #include "planning/planning.h"
 #include "action/action.h"
+#include "language/language_kernel.h"
 #include "../hub_vga.h"
 
 void hub_initialize(void) {
-    hub_vga_init(8); // Now 8 modules!
+    hub_vga_init(9); // Now 9 modules!
     initialize_brain_stem();
     memory_initialize();
     perception_initialize();
@@ -19,6 +20,7 @@ void hub_initialize(void) {
     reasoning_initialize();
     planning_initialize();
     action_initialize();
+    language_initialize();
 }
 
 
@@ -51,6 +53,9 @@ void hub_update(void) {
     // Action
     action_execute();
 
+    // Language
+    language_update();
+
     // Status reporting (order matters for VGA grid)
     perception_status();
     memory_status();
@@ -59,4 +64,5 @@ void hub_update(void) {
     reasoning_status();
     planning_status();
     action_status();
+    language_status();
 }

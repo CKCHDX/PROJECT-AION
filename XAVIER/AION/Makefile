@@ -155,6 +155,22 @@ neural.o: kernel/aion/Athena/neural.c kernel/aion/Athena/neural.h kernel/aion/At
 math.o: kernel/aion/math.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# Language module
+language_kernel.o: kernel/aion/Athena/language/language_kernel.c kernel/aion/Athena/language/language_kernel.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+parser.o: kernel/aion/Athena/language/parser.c kernel/aion/Athena/language/parser.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+lexicon.o: kernel/aion/Athena/language/lexicon.c kernel/aion/Athena/language/lexicon.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+lang_learn.o: kernel/aion/Athena/language/lang_learn.c kernel/aion/Athena/language/lang_learn.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
+lang_chat.o: kernel/aion/Athena/language/lang_chat.c kernel/aion/Athena/language/lang_chat.h
+	$(CC) $(CFLAGS) -c $< -o $@
+
 # io/
 direct_hw.o: $(KERNEL_SRC_DIR)/aion/io/direct_hw.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -223,7 +239,8 @@ $(KERNEL): \
     experience.o state_save.o security_check.o validation.o \
     interrupts_c.o interrupts_S.o \
     failsafe.o firewall_test.o ata.o memory_common.o prng.o math.o \
-    action_selection.o reward.o q_learning.o timer.o state.o hub.o perception.o memory.o athena_utils.o learning.o hub_vga.o attention.o reasoning.o planning.o athena_action.o
+    action_selection.o reward.o q_learning.o timer.o state.o hub.o perception.o memory.o athena_utils.o learning.o hub_vga.o attention.o reasoning.o planning.o athena_action.o \
+    language_kernel.o parser.o lexicon.o lang_learn.o lang_chat.o
 	$(LD) $(LDFLAGS) -o $@ $^
 
 
