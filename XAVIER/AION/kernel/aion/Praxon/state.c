@@ -1,6 +1,5 @@
 #include "state.h"
 #include "../vga.h"  // Use your own VGA/kdebug output function
-#include <stdio.h>
 // Internal simulated state and timer
 static unsigned char sim_state = 0;
 static unsigned int sim_time = 0;

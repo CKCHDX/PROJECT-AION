@@ -1,12 +1,11 @@
 #include "attention.h"
 #include "../hub_vga.h"
 #include "../utils.h"
-#include <string.h>
 
 static AttentionState g_attention;
 
 void attention_initialize(void) {
-    memset(&g_attention, 0, sizeof(g_attention));
+    athena_memset(&g_attention, 0, sizeof(g_attention));
     hub_vga_update(4, 0, "[ATTENTION] Initialized");
 }
 
@@ -15,7 +14,7 @@ void attention_update(const AttentionFocus* candidates, size_t n) {
     // Copy and sort by salience (descending)
     AttentionFocus sorted[ATTENTION_MAX_FOCI * 2];
     size_t count = n > ATTENTION_MAX_FOCI * 2 ? ATTENTION_MAX_FOCI * 2 : n;
-    memcpy(sorted, candidates, count * sizeof(AttentionFocus));
+    athena_memcpy(sorted, candidates, count * sizeof(AttentionFocus));
 
     // Simple bubble sort for small N
     for (size_t i = 0; i < count; ++i) {
